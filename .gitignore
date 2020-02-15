@@ -1,0 +1,8 @@
+node_modules
+projects
+yarn-error.log
+build
+coverage
+.idea
+package-lock.json
+__tests__/__snapshots__/*.v8.json
