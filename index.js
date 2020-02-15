@@ -41,4 +41,18 @@ app.get('/getCoverageWithStream', async (req, res) => {
   stream.pipe(res);
 });
 
+
+app.get('/getCoverageWithNodeModules', async (req, res) => {
+  const options = {
+    all: req.query.all,
+    return: true,
+    stream: true,
+    exclude: ['**/node_modules/runtime-coverage/**', '**/collect-v8-coverage/**'],
+    reporters: [req.query.reporter || 'text'],
+  };
+  const coverage = await runtimeCoverage.getCoverage(options);
+  const stream = Object.values(coverage)[0];
+  stream.pipe(res);
+});
+
 app.listen(3000);
